@@ -1,9 +1,14 @@
-﻿using System.Windows.Media;
+﻿using System.Text.Json.Serialization;
+using System.Windows.Media;
 
 namespace VectorGraphicViewer.Model
 {
     public class Graphic
     {
+        public Graphic()
+        {
+
+        }
         public Graphic(string type, Point a, Point b, Point c, Point center, double radius, bool filled, Color color)
         {
             Type = type;
@@ -15,13 +20,14 @@ namespace VectorGraphicViewer.Model
             Filled = filled;
             Color = color;
         }
-        public string Type { get; private set; }
-        public Point A { get; private set; } 
-        public Point B { get; private set; }
-        public Point C { get; private set; } 
-        public Point Center { get; private set; }
-        public double Radius { get; private set; }
-        public bool? Filled { get; private set; }
-        public Color Color { get; private set; }
+        
+        public string Type { get;  set; }
+        public Point A { get;  set; } 
+        public Point B { get;  set; }
+        public Point C { get;  set; } 
+        public Point Center { get;  set; }
+        public double Radius { get;  set; }
+        public bool? Filled { get;  set; }
+        public Color Color { get;  set; }
     }
 }

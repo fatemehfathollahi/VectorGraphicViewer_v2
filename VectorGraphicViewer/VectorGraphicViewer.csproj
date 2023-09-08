@@ -104,7 +104,6 @@
     <Compile Include="Services\Factory\SerializationrFactory.cs" />
     <Compile Include="Services\Factory\ShapeFactory.cs" />
     <Compile Include="Services\Strategy\JsonSerialization.cs" />
-    <Compile Include="Services\Strategy\ShapeSerializer.cs" />
     <Compile Include="Services\Strategy\XmlSerialization.cs" />
     <Compile Include="Services\Visitor\CircleVisitor.cs" />
     <Compile Include="Services\Visitor\LineVisitor.cs" />

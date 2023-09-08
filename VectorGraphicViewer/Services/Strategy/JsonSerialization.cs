@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
 using VectorGraphicViewer.Contract;
@@ -10,6 +11,10 @@ namespace VectorGraphicViewer.Services.Strategy
 {
     public class JsonSerialization : ISerialization
     {
+        public JsonSerialization()
+        {
+
+        }
         public List<Graphic> Deserialize(string data)
         {
             try
@@ -18,9 +23,9 @@ namespace VectorGraphicViewer.Services.Strategy
                 if (shapeDto != null)
                     return shapeDto.Select(shape => ShapeMapper.ToGraphic(shape)).ToList();
             }
-            catch (JsonException exception)
+            catch (Exception exception)
             {
-                throw exception;
+                throw new JsonException("An error occurred while deserializing the JSON data.", exception);
             }
             return new List<Graphic>();
         }

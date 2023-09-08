@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Text.Json;
+using System.Xml;
 using System.Xml.Serialization;
 using VectorGraphicViewer.Contract;
 using VectorGraphicViewer.Model;
@@ -8,17 +11,25 @@ namespace VectorGraphicViewer.Services.Strategy
 {
     public class XmlSerialization : ISerialization
     {
+        public XmlSerialization()
+        {
+
+        }
         public List<Graphic> Deserialize(string data)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Graphic>), new XmlRootAttribute("Shapes"));
-
-            List<Graphic> graphics;
-            using (FileStream fileStream = new FileStream(data, FileMode.Open))
+            try
             {
-                graphics = (List<Graphic>)serializer.Deserialize(fileStream);
-            }
+                XmlSerializer serializer = new XmlSerializer(typeof(List<Graphic>), new XmlRootAttribute("Shapes"));
 
-            return graphics;
+                using (StringReader stringReader = new StringReader(data))
+                {
+                    return (List<Graphic>)serializer.Deserialize(stringReader);
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new XmlException("An error occurred while deserializing the XML data.", exception);
+            }
         }
     }
 }
