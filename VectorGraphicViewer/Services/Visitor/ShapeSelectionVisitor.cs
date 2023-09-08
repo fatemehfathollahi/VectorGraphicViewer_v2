@@ -9,7 +9,7 @@ namespace VectorGraphicViewer.Services.Visitor
 {
     public class ShapeSelectionVisitor : IShapeVisitor
     {
-        System.Windows.Controls.Canvas Canvas;
+        Canvas Canvas;
         public ShapeSelectionVisitor(Canvas canvas)
         {
             Canvas = canvas;

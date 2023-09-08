@@ -103,6 +103,7 @@ namespace VectorGraphicViewer
         private List<Graphic> ConvertToGraphicsModel()
         {
             string data = File.ReadAllText("graphics.json");
+            if (data == null) return new List<Graphic>();
             string fileName = ConfigurationManager.AppSettings["FileName"];
             string fileExtension = System.IO.Path.GetExtension(fileName);
 

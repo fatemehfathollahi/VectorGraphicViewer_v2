@@ -8,7 +8,6 @@ using VectorGraphicViewer.Services.Strategy;
 
 namespace VectorGraphicViewer.test.Serializations
 {
-
     [TestClass]
     public class JsonSerializationTests
     {
@@ -55,6 +54,23 @@ namespace VectorGraphicViewer.test.Serializations
             // Assert
             Assert.IsNotNull(result);
             Assert.AreEqual(3, result.Count);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(JsonException))]
+        public void Deserialize_WhenDataProvided_Is_Null_ShouldThrowJsonException()
+        {
+            // Arrange
+            string invalidData = null;
+
+            Mock<ISerialization> jsonSerializationMock = new Mock<ISerialization>();
+
+            // Act
+            jsonSerializationMock.Setup(mock => mock.Deserialize(It.IsAny<string>()))
+                                 .Returns(new List<Graphic>());
+            JsonSerialization jsonSerialization = new JsonSerialization();
+
+            jsonSerialization.Deserialize(invalidData);
         }
 
         [TestMethod]

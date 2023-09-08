@@ -61,7 +61,23 @@ namespace VectorGraphicViewer.test.Serializations
         public void Deserialize_InvalidData_ThrowsJsonException()
         {
             // Arrange
-            var invalidData = "invalid_data.xml";
+            string invalidData = "invalid_data.xml";
+
+            // Act
+            Mock<ISerialization> xmlSerializationMock = new Mock<ISerialization>();
+
+            xmlSerializationMock.Setup(mock => mock.Deserialize(It.IsAny<string>()))
+                                 .Returns(new List<Graphic>());
+
+            XmlSerialization xmlSerialization = new XmlSerialization();
+            xmlSerialization.Deserialize(invalidData);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(XmlException))]
+        public void Deserialize_Data_Is_Null_ThrowsJsonException()
+        {
+            // Arrange
+            string invalidData = null;
 
             // Act
             Mock<ISerialization> xmlSerializationMock = new Mock<ISerialization>();

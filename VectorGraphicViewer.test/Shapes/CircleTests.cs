@@ -22,10 +22,13 @@ namespace VectorGraphicViewer.test.Shapes
 
             // Act
             var result = circle.Draw(canvas);
-
+            var brush = new SolidColorBrush(color);
             // Assert
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(System.Windows.Shapes.Ellipse));
+            Assert.AreEqual((radius * 2), result.Width, "The circle is not rendered at the expected X coordinate.");
+            Assert.AreEqual((radius * 2), result.Height, "The circle is not rendered at the expected Y coordinate.");
+            Assert.AreEqual(brush, result.Fill, "The circle does not have the expected color.");
         }
     }
 }

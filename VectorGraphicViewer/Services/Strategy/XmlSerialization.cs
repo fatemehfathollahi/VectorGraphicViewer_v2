@@ -13,7 +13,6 @@ namespace VectorGraphicViewer.Services.Strategy
     {
         public XmlSerialization()
         {
-
         }
         public List<Graphic> Deserialize(string data)
         {
